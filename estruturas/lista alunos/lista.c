@@ -193,3 +193,30 @@ void imprimirLista(Lista*l){
         printf("Nome: %s| Matricula: %d \n", l->dados[i].nome, l->dados[i].matricula);
     }
 }
+
+void verificarOrdem(Lista*l) {
+    if(listaNula(l))
+        return
+
+    int contadorCrescente = 0;
+    int contadorDerescente = 0;
+
+    for(int i = 0; i < l->qtd-1; i++){
+        if(l->dados[i].matricula >= l->dados[i+1].matricula)
+            contadorDerescente++;
+        if(l->dados[i].matricula <= l->dados[i+1].matricula)
+            contadorCrescente;
+    }
+
+    if(contadorCrescente == l->qtd-1){
+        printf("Ordenado Crescente");
+        return
+    }
+
+    if(contadorDerescente == l->qtd-1){
+        printf("Ordenado Derescente");
+        return
+    }
+
+    printf("Desordenado");
+}

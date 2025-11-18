@@ -15,6 +15,7 @@ Aluno *consultaConteudo(Lista*l, int matricula);
 Lista *criarLista();
 void liberarLista(Lista*l);
 void imprimirLista(Lista*l)
+void verificarOrdem(Lista*l);
 int tamanhoLista(Lista*l);
 int listaNula(Lista*l);
 int listaCheia(Lista*l);
