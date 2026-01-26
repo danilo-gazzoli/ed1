@@ -39,5 +39,16 @@ int newClient(Queue*q, Client*c){
 }
 
 int toMeet(Queue*q){
+    if(q == NULL) return 0;
 
+    Node *aux = q->head;
+    q->head = q->head->next;
+    
+    if(q->head == NULL){
+        q->tail = NULL;
+        return 0;
+    }
+
+    free(aux);
+    return 1;
 }
