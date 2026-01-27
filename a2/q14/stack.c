@@ -26,16 +26,21 @@ int push(Stack*s, char*str){
     return 1;
 }
 
-void pop(Stack*s){
-    if (!s->topo) return NULL;
-
-    node *aux = s->topo;
-    char* valorRec = &(aux->string);
-
+char* pop(Stack* s) {
+    if (!s || !s->topo) return NULL;
+    Node *aux = s->topo;
+    
+    // 2. Precisamos de um espaço novo na memória para a string de retorno
+    // Assim, ela sobrevive ao free(aux)
+    char *valorRec = (char*) malloc(100 * sizeof(char));
+    if (valorRec == NULL) return NULL; 
+    strcpy(valorRec, aux->string); 
+    // 3. Desconecta o topo
     s->topo = aux->prox;
-
+    // 4. Libera o nó antigo e ajusta a contagem
     free(aux);
-    s->qtd++;
+    s->qtd--; // CORREÇÃO: Pop diminui a quantidade!
+    return valorRec;
 }
 
 int estaBalanceada(char*str){
